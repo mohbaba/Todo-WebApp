@@ -1,0 +1,113 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily To Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+        .done {
+            text-decoration: line-through;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Daily To Do List</h1>
+        <input type="text" placeholder="Add new list item">
+        <button>Add</button>
+        <ul>
+            <li>New list item</li>
+            <li class="hover">New list item (Hover)</li>
+            <li class="done">New list item (Done)</li>
+        </ul>
+    </div>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To-Do List</title>
+</head>
+<body>
+    <input type="text" id="taskInput" placeholder="Add a task">
+    <button onclick="addTask()">Add Task</button>
+    <ul id="taskList"></ul>
+
+    <script>
+        function addTask() {
+            const taskInput = document.getElementById("taskInput");
+            const task = taskInput.value.trim();
+            if (task) {
+                // Save task to localStorage
+                const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+                tasks.push(task);
+                localStorage.setItem("tasks", JSON.stringify(tasks));
+
+                // Display tasks
+                displayTasks();
+                taskInput.value = "";
+            }
+        }
+
+        function displayTasks() {
+            const taskList = document.getElementById("taskList");
+            taskList.innerHTML = "";
+            const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            tasks.forEach((task) => {
+                const li = document.createElement("li");
+                li.textContent = task;
+                taskList.appendChild(li);
+            });
+        }
+
+        // Initial display
+        displayTasks();
+    </script>
+</body>
+</html>
